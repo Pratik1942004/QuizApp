@@ -1,0 +1,57 @@
+﻿
+$(function () {
+    if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+        $("#leftbar").remove();
+    }
+    $(window).scroll(function () {
+        var Height1 = $(".leftscrollbar").height();
+        var Height2 = 0;
+        if ($(".leftscrollbar").length > 0) {
+            Height2 = $(".leftscrollbar").offset().top;
+        }
+        $('.leftscrollbar').scrollTop((Height2 - Height1) * 0.07);
+    });
+
+    var strhe = $(".leftscrollbar").innerHeight();
+    if (strhe > 700) {
+        $(".leftscrollbar").css({ "overflow-y": "scroll", "height": "calc(90% - 50px)" });
+    }
+
+    $(window).scroll(function () {
+        if ($(window).scrollTop() >= 600) {
+            var topheight = $(window).scrollTop() + 100;
+            $("#leftbar").css({ "display": "block", "min-height": "" + topheight + "px", "opacity": "1" });
+        }
+        else {
+            $("#leftbar").css({ "display": "none", "min-height": "1px", "opacity": "0" });
+        }
+    });
+    $("#leftnavbarheader").bind("click", function () {
+        $("#tutorial-pages").slideToggle();
+    });
+
+    $("#tutorial-pages a").bind("click", function () {
+        $("#tutorial-pages").slideToggle();
+        var topheight = $("#" + (this.id).replace("listgroup-", "") + "").offset().top;
+        $('html,body').animate({ scrollTop: '' + topheight + 'px' }, 500, function () { $('#tutorial-pages').animate(1000);});
+    });
+
+function AutoSize(theImg, maxWidth, maxHeight) {
+        var newImage = new Image();
+        newImage.src = theImg.src;
+        if (newImage.width < maxWidth && newImage.height < maxHeight) {
+            theImg.width = newImage.width;
+            theImg.height = newImage.height;
+        } else {
+            if ((maxWidth / maxHeight) <= (newImage.width / newImage.height)) {
+                var widthAuto = ((maxWidth - 0.1) / maxWidth * 100).toString() + '%';
+                theImg.setAttribute("width", widthAuto);
+                theImg.height = maxWidth * (newImage.height / newImage.width);
+            } else {
+                var widthAuto = ((maxHeight * (newImage.width / newImage.height) - 0.1) / maxWidth * 100).toString() + "%";
+                theImg.setAttribute("width", widthAuto);
+                theImg.height = maxHeight;
+            }
+        }
+    }
+});

@@ -1,0 +1,48 @@
+﻿
+function myHoverTip() {
+    $('#ulCates').show().css('z-index', 999);
+    $("#spn_icon").removeClass("icon-xiasanjiaoxing").addClass("icon-shangsanjiaoxing");
+}
+function myHideTip() {
+    $('#ulCates').hide().css('z-index', 999);
+    $("#spn_icon").removeClass("icon-shangsanjiaoxing").addClass("icon-xiasanjiaoxing");
+}
+function TableHoverTip(obj) {
+    $('#ulCates').show().css('z-index', 999);
+    $("#spn_icon").removeClass("icon-xiasanjiaoxing").addClass("icon-shangsanjiaoxing");
+}
+function TableHideTip(obj) {
+    $('#ulCates').hide().css('z-index', 999);
+    $("#spn_icon").removeClass("icon-shangsanjiaoxing").addClass("icon-xiasanjiaoxing");
+}
+
+function BrandmyHoverTip() {
+    $('#ulBrandCates').show().css('z-index', 999);
+    $("#brandspn_icon").removeClass("icon-xiasanjiaoxing").addClass("icon-shangsanjiaoxing");
+}
+function BrandmyHideTip() {
+    $('#ulBrandCates').hide().css('z-index', 999);
+    $("#brandspn_icon").removeClass("icon-shangsanjiaoxing").addClass("icon-xiasanjiaoxing");
+}
+function BrandTableHoverTip(obj) {
+    $('#ulBrandCates').show().css('z-index', 999);
+    $("#brandspn_icon").removeClass("icon-xiasanjiaoxing").addClass("icon-shangsanjiaoxing");
+}
+function BrandTableHideTip(obj) {
+    $('#ulBrandCates').hide().css('z-index', 999);
+    $("#brandspn_icon").removeClass("icon-shangsanjiaoxing").addClass("icon-xiasanjiaoxing");
+}
+function Show() {
+    $("#header-menu-wrap2").fadeToggle("slow");
+}
+function ShowTwo() {
+    $("#Two_Ul").fadeToggle("slow");
+    $("#BrandTwo_Ul").hide();
+}
+function BrandShow() {
+    $("#header-menu-wrap2").fadeToggle("slow");
+}
+function BrandShowTwo() {
+    $("#BrandTwo_Ul").fadeToggle("slow");
+    $("#Two_Ul").hide();
+}

@@ -1,0 +1,79 @@
+﻿jQuery(document).ready(function ($) {
+    //var Bwidth = document.body.scrollWidth;
+    //if (Bwidth<1000)
+    //{
+    //    var b_wid = parseInt($("#content").width() - 50);
+    //    if (b_wid<0)
+    //    {
+    //        b_wid = 310;
+    //    }
+    //    $("#contentimg table").not(".similar_contents").find("table").each(function (index) {
+    //    //$("#contentimg table").each(function (index) {
+    //    var t_wid = parseInt($(this).context.width);
+    //    var html_str = $(this).context.outerHTML.replace("<table", "<div class=\"divnewcon\"  style=\"width:" + b_wid + "px;overflow-x:scroll;float:left;\"> <table style=\"width:" + (t_wid) + "px;\"").replace("</table>", "</table></div>");
+    //        $(this).context.outerHTML = html_str;
+    //});
+    //}
+
+    $(window).scroll(function () {
+        var wstop = $(window).scrollTop();
+        if ($(window).scrollTop() >= 600) {
+            $("#DIVTOP").html("");
+            $("#DIVTOP").append("<div id=\"righttop\" onclick=\"Top();\"><div style=\" top: auto;\" id=\"goTopBtn\" title=\"top\"><b style=\"font-size:26px;height:10px;\">^</b><b>TOP</b></div></div>");
+        }
+        else {
+            $("#DIVTOP").html("");
+        }
+    })
+});
+
+function AutoSize(theImg, maxWidth, maxHeight) {
+    var newImage = new Image();
+    newImage.src = theImg.src;
+    if (newImage.width < maxWidth && newImage.height < maxHeight) {
+        theImg.width = newImage.width;
+        theImg.height = newImage.height;
+    } else {
+        if ((maxWidth / maxHeight) <= (newImage.width / newImage.height)) {
+            var widthAuto = ((maxWidth - 0.1) / maxWidth * 100).toString() + '%';
+            theImg.setAttribute("width", widthAuto);
+            theImg.height = maxWidth * (newImage.height / newImage.width);
+        } else {
+            var widthAuto = ((maxHeight * (newImage.width / newImage.height) - 0.1) / maxWidth * 100).toString() + "%";
+            theImg.setAttribute("width", widthAuto);
+            theImg.height = maxHeight;
+        }
+    }
+}
+
+function Top() {
+    $('html,body').animate({ scrollTop: '0px' }, 500);
+}
+
+function rate(obj, oEvent) {
+    var imgSrc = '/images/Bicon/s0.png';
+    var imgSrc_2 = '/images/Bicon/s1.png';
+    if (obj.rateFlag) return;
+    var e = oEvent || window.event;
+    var target = e.target || e.srcElement;
+    var imgArray = obj.getElementsByTagName("img");
+    for (var i = 0; i < imgArray.length; i++) {
+        imgArray[i]._num = i;
+        imgArray[i].onclick = function () {
+            document.getElementById("txtScore").value = this._num + 1;
+        };
+    }
+    if (target.tagName == "IMG") {
+        for (var j = 0; j < imgArray.length; j++) {
+            if (j <= target._num) {
+                imgArray[j].src = imgSrc_2;
+            } else {
+                imgArray[j].src = imgSrc;
+            }
+        }
+    } else {
+        for (var k = 0; k < imgArray.length; k++) {
+            imgArray[k].src = imgSrc;
+        }
+    }
+}
